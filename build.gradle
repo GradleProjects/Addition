@@ -17,7 +17,7 @@ repositories {
         
      maven { url "http://repo.maven.apache.org/maven2" }
 	 maven {
-          url "http://localhost:8081/nexus/content/groups/public"
+          url "http://18.216.99.142:8081/nexus/content/groups/public"
     }
 }
 dependencies {
@@ -27,7 +27,7 @@ dependencies {
 uploadArchives {
     repositories {
        mavenDeployer {
-			repository(url: "http://localhost:8081/nexus/content/repositories/snapshots") {
+			repository(url: "http://18.216.99.142:8081/nexus/content/repositories/snapshots") {
 			authentication(userName: "deployment", password: "deployment123")
 		}
 			pom.version = "1.0-SNAPSHOT"
