@@ -1,0 +1,38 @@
+apply plugin: 'java'
+apply plugin: 'maven'
+
+group = 'com.devops.calculator.addition'
+version = '1.0.0-SNAPSHOT'
+
+description = """"""
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+tasks.withType(JavaCompile) {
+	options.encoding = 'UTF-8'
+}
+
+repositories {
+        
+     maven { url "http://repo.maven.apache.org/maven2" }
+	 maven {
+          url "http://localhost:8081/nexus/content/groups/public"
+    }
+}
+dependencies {
+    testCompile group: 'junit', name: 'junit', version:'3.8.1'
+}
+
+uploadArchives {
+    repositories {
+       mavenDeployer {
+			repository(url: "http://localhost:8081/nexus/content/repositories/snapshots") {
+			authentication(userName: "deployment", password: "deployment123")
+		}
+			pom.version = "1.0-SNAPSHOT"
+			pom.artifactId = "Addition"
+			pom.groupId = "com.devops.calculator.addition"
+       }
+    }
+}
